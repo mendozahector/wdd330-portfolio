@@ -4,15 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WDD 330 Portfolio</title>
-    <!-- <link rel="stylesheet" href="styles.css" /> -->
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Web Frontend Development II Course Portfolio (WDD 330)</h1>
+    <h1>Web Frontend Development II</h1>
+    <h1>WDD 330 Course Portfolio</h1>
     <h2>Notes/Questions</h2>
-    <ol>
-      <li><a href="week1/">Week 01</a></li>
+    <ol id="links">
     </ol>
+    
+    <script>
+      const links = [
+        {
+          label: "Week 01",
+          url: "week01/index.html"
+        }
+      ]
       
-    </ul>
+      links.forEach(addItem);
+      
+      function addItem(value) {
+        newItem = "<li><a href=\"" + value.url + "/\">" + value.label + "</a></li>";
+        const ol = document.getElementById("links");
+        ol.appendChild(newItem);
+      }
+    </script>
+    
+    
   </body>
 </html>
