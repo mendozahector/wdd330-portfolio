@@ -3,14 +3,111 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/highlight/styles/default.min.css">
+    <script src="/highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script> 
     <link rel="shortcut icon" href="#" />
     <title>WDD 330 Portfolio</title>
   </head>
   <body>
     <h1>Week 02</h1>
     <h2>Notes/Questions</h2>
-    <p>Working...</p>
+    <div>
 
+      <h3>Comments</h3>
+      <pre><code>
+        // This is a line comment
+
+        /* This is a 
+        block comment */
+      </code></pre>
+
+      <h3>JavaScript Grammar</h3>
+      <p>Semicolons are not required, but are error-prone. Use following format instead:</p>
+      <pre><code>
+        const message = 'Hello World!';alert(message);
+        or
+        {// this is a block containing 2 statements
+          const message = 'Hello!';
+          alert(message);
+        }
+      </code></pre>
+
+      <h3>Reserved Words</h3>
+      <pre><code>
+        abstract, await, boolean, break, byte, case, catch, char, class, const, continue, debugger, default, delete, do, double, else, enum, export, extends, false, final, finally, float, for, function, goto, if, implements, import, in instanceof, int, interface, let, long, native, new, null, package, private, protected, public, return, short, static, super, switch, synchronized, this, throw, throws, transient, true, try, typeof, var, volatile, void, while, with, yield
+        undefined, NaN, Infinity
+      </code></pre>
+
+      <h3>Primitive Data Types</h3>
+      <pre><code>
+        String
+
+        Symbol (The symbol primitive data type was only introduced in ES6.)
+    
+        Number
+    
+        Boolean
+    
+        Undefined
+    
+        Null
+      </code></pre>
+
+      <h3>Variables</h3>
+      <pre><code>
+        const name = 'Alexa'; // This won't be assigned to another string
+        let score = 0; // This value may change during the program
+        let x = 3, y = 4, z = 5;
+      </code></pre>
+      <p>
+        Even if you use const to declare a variable, non-primitive data types can still be mutated later in the program. Using const prevents you from reassigning a variable to another object, as it will produce an error
+      </p>
+      <pre><code>
+        const name = { value: 'Alexa' }; // an object
+        name.value = 'Siri'; // change the value
+        << 'Siri'
+
+        // declare object
+        const name = { value: 'Alexa' };
+
+        // attempt to reassign to another object
+        name = { value: 'Siri' }
+        << TypeError: Assignment to constant variable.
+      </code></pre>
+
+      <h3></h3>
+      <pre><code>
+        
+      </code></pre>
+
+      <h3></h3>
+      <pre><code>
+        
+      </code></pre>
+
+      <h3></h3>
+      <pre><code>
+        
+      </code></pre>
+
+      <h3></h3>
+      <pre><code>
+        
+      </code></pre>
+
+      <h3></h3>
+      <pre><code>
+        
+      </code></pre>
+
+      <h3></h3>
+      <pre><code>
+        
+      </code></pre>
+    </div>
+
+    <br>
     <a href="../index.html">Back to home</a>
   </body>
 </html>
