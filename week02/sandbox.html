@@ -3,12 +3,64 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/vs2015.min.css">
+    <script src="../styles/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
     <link rel="shortcut icon" href="#" />
     <title>Week 01 | Code Sandbox</title>
   </head>
   <body>
-    <h1>Week 01</h1>
+    <h1>Week 02</h1>
     <h2>Code Sandbox</h2>
+    
+    <h3>2.1</h3>
+    <pre><code>
+      let steps = '#';
+      while (steps.length <= 7)
+      {
+        console.log(steps);
+        steps += '#';
+      }
+    </code></pre>
+
+    <h3>2.2</h3>
+    <pre><code>
+      for (let i = 1; i <= 100; i++)
+      {
+        let line = '';
+        if (i % 3 == 0)
+        {
+          line += 'Fizz';
+        }
+        if (i % 5 == 0)
+        {
+          line += 'Buzz';
+        }
+        if (line == '')
+        {
+          line = i;
+        } 
+        console.log(line)
+      }
+    </code></pre>
+
+    <h3>2.3</h3>
+    <pre><code>
+      board = '';
+      size = 8;
+      for (let i = 1; i <= size; i++)
+      {
+        for (let j = 1; j <= size; j++)
+        {
+          if ((i + j) % 2 == 0)
+            board += '#';
+          else
+            board += ' ';
+        }
+        board += '\n';
+      }
+      console.log(board);
+    </code></pre>
 
     <a href="../index.html">Back to home</a>
   </body>
