@@ -9,36 +9,67 @@
   <body>
     <h1>Web Frontend Development II</h1>
     <h1>WDD 330 Course Portfolio</h1>
-    <h2>Notes/Questions</h2>
-    <ol id="links">
-    </ol>
+    <div>
+      <h2>Notes/Questions</h2>
+      <ol id="note-links">
+      </ol>
 
-    <script>
+      <script>
 
-      const links = [
-        {
-          label: "Week 01",
-          url: "week01/index.html"
-        },
-        {
-          label: "Week 02",
-          url: "week02/index.html"
+        const notesLinks = [
+          {
+            label: "Week 01",
+            url: "week01/notes.html"
+          },
+          {
+            label: "Week 02",
+            url: "week02/notes.html"
+          }
+        ]
+        
+        let notesHtml = document.getElementById("note-links");
+        notesLinks.forEach(addItem);
+        function addItem(value) {
+          var a = document.createElement("a");
+          a.href = value.url;
+          a.textContent = value.label;
+
+          var li = document.createElement("li");
+          li.appendChild(a);
+
+          notesHtml.appendChild(li);
         }
-      ]
-      
-      var linksList = document.getElementById("links");
-      links.forEach(addItem);
-      function addItem(value) {
-        var a = document.createElement("a");
-        a.href = value.url;
-        a.textContent = value.label;
+      </script>
+    </div>
 
-        var li = document.createElement("li");
-        li.appendChild(a);
+    <div>
+      <h2>Code Sandbox</h2>
+      <ol id="sandbox-links">
+      </ol>
 
-        linksList.appendChild(li);
-      }
-    </script>
+      <script>
+
+        const sandBoxlinks = [
+          {
+            label: "Week 02",
+            url: "week02/sandbox.html"
+          }
+        ]
+        
+        var sandboxHtml = document.getElementById("sandbox-links");
+        sandBoxlinks.forEach(addItem);
+        function addItem(value) {
+          var a = document.createElement("a");
+          a.href = value.url;
+          a.textContent = value.label;
+
+          var li = document.createElement("li");
+          li.appendChild(a);
+
+          sandboxHtml.appendChild(li);
+        }
+      </script>
+    </div>
     
     
   </body>
