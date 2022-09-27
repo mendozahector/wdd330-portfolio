@@ -13,7 +13,7 @@
     <h1>Week 02</h1>
     <h2>Code Sandbox</h2>
     
-    <h3>2.1</h3>
+    <h3>2.1 Looping a triangle</h3>
     <pre><code>
       let steps = '#';
       while (steps.length <= 7)
@@ -23,7 +23,7 @@
       }
     </code></pre>
 
-    <h3>2.2</h3>
+    <h3>2.2 FizzBuzz</h3>
     <pre><code>
       for (let i = 1; i <= 100; i++)
       {
@@ -44,7 +44,7 @@
       }
     </code></pre>
 
-    <h3>2.3</h3>
+    <h3>2.3 Chessboard</h3>
     <pre><code>
       board = '';
       size = 8;
@@ -60,6 +60,85 @@
         board += '\n';
       }
       console.log(board);
+    </code></pre>
+
+    <h3>3.1 Minimun</h3>
+    <pre><code>
+      function min(a, b) {
+        if (a < b) return a;
+        else return b;
+      }
+      console.log(min(0, 10));
+      // → 0
+      console.log(min(0, -10));
+      // → -10
+    </code></pre>
+
+    <h3>3.2 Recursion</h3>
+    <pre><code>
+      function isEven(n) {
+        if (n < 0) return false;
+        
+        if (n >= 2) return isEven(n-2);
+        
+        if (n == 1) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+      console.log(isEven(50));
+      // → true
+      console.log(isEven(75));
+      // → false
+      console.log(isEven(-1));
+      // → ??
+    </code></pre>
+
+    <h3>3.3 Bean counting</h3>
+    <pre><code>
+      function countChar(word, c) {
+        var sum = 0;
+        for (let i = 0; i < word.length; i++) {
+          if (word[i] == c) sum += 1;
+        }
+        return sum;
+      }
+      function countBs(word) {
+        return countChar(word, "B");
+      }
+      console.log(countBs("BBC"));
+      // → 2
+      console.log(countChar("kakkerlak", "k"));
+      // → 4
+    </code></pre>
+
+    <h3>4.1 The sum of a range</h3>
+    <pre><code>
+      function range(start, end, step = 1) {
+        let arr = [];
+        if (start < end) {
+          for (; start <= end; start += step) arr.push(start);
+        }
+        else if (start > end) {
+          step = step < 0 ? step : -1
+          for (; start >= end; start += step) arr.push(start);
+        }
+        return arr;
+      }
+      function sum(arr) {
+        let sum = 0;
+        for (let i = 0; i < arr.length; i++) {
+          sum += arr[i];
+        }
+        return sum;
+      }
+      console.log(range(1, 10))
+      // → [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      console.log(range(5, 2, -1));
+      // → [5, 4, 3, 2]
+      console.log(sum(range(1, 10)));
+      // → 55
     </code></pre>
 
     <a href="../index.html">Back to home</a>
