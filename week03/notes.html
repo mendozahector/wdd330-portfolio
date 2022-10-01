@@ -12,7 +12,21 @@
   <body>
     <h1>Week 03</h1>
     <h2>Notes/Questions</h2>
-
+    <h3>Object methods, "this"</h3>
+    <ul>
+      <li>Functions that are stored in object properties are called “methods”.</li>
+      <li>Methods allow objects to “act” like object.doSomething().</li>
+      <li>Methods can reference the object as this.</li>
+    </ul>
+    <p>The value of this is defined at run-time.</p>
+    <ul>
+      <li>When a function is declared, it may use this, but that this has no value until the function is called.</li>
+      <li>A function can be copied between objects.</li>
+      <li>When a function is called in the “method” syntax: object.method(), the value of this during the call is object.</li>
+    </ul>
+    <p>
+      * Please note that arrow functions are special: they have no this. When this is accessed inside an arrow function, it is taken from outside.
+    </p>
     <br>
     <a href="../index.html">Back to home</a>
   </body>
