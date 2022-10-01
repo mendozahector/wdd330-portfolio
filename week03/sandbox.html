@@ -14,8 +14,103 @@
     <h2>Code Sandbox</h2>
 
     <h3>14.1 Build a table</h3>
-    <pre><code>
+    <h4>Mountains</h4>
+
+    <div id="mountains"></div>
+    <script>
+      const MOUNTAINS = [
+        {name: "Kilimanjaro", height: 5895, place: "Tanzania"},
+        {name: "Everest", height: 8848, place: "Nepal"},
+        {name: "Mount Fuji", height: 3776, place: "Japan"},
+        {name: "Vaalserberg", height: 323, place: "Netherlands"},
+        {name: "Denali", height: 6168, place: "United States"},
+        {name: "Popocatepetl", height: 5465, place: "Mexico"},
+        {name: "Mont Blanc", height: 4808, place: "Italy/France"}
+      ];
       
+      function createTable(objects) {
+        // table element
+        let table = document.createElement("table");
+        
+        // first row contains the table headers (td)
+        let tr = document.createElement("tr");
+        Object.keys(objects[0]).forEach(function(header) {
+          let th = document.createElement("th");
+          let text = document.createTextNode(header);
+          th.style.textAlign = "center";
+          th.appendChild(text);
+          tr.appendChild(th);
+        });
+        table.appendChild(tr);
+        
+        // append all data into rows
+        objects.forEach(function(object) {
+          let tr = document.createElement("tr");
+          for (let data of Object.values(object)) {
+            let td = document.createElement("td");
+            let text = document.createTextNode(data);
+            td.appendChild(text);
+            td.style.textAlign = "right";
+            tr.appendChild(td);
+          }
+          table.append(tr);
+        });
+        
+        return table;
+      }
+      
+      const mountainsTable = createTable(MOUNTAINS);
+      document.querySelector("#mountains").appendChild(mountainsTable);
+    </script>
+    <pre><code>
+  const MOUNTAINS = [
+    {name: "Kilimanjaro", height: 5895, place: "Tanzania"},
+    {name: "Everest", height: 8848, place: "Nepal"},
+    {name: "Mount Fuji", height: 3776, place: "Japan"},
+    {name: "Vaalserberg", height: 323, place: "Netherlands"},
+    {name: "Denali", height: 6168, place: "United States"},
+    {name: "Popocatepetl", height: 5465, place: "Mexico"},
+    {name: "Mont Blanc", height: 4808, place: "Italy/France"}
+  ];
+  
+  function createTable(objects) {
+    // table element
+    let table = document.createElement("table");
+    
+    // first row contains the table headers (td)
+    let tr = document.createElement("tr");
+    Object.keys(objects[0]).forEach(function(header) {
+      let th = document.createElement("th");
+      let text = document.createTextNode(header);
+      th.style.textAlign = "center";
+      th.appendChild(text);
+      tr.appendChild(th);
+    });
+    table.appendChild(tr);
+    
+    // append all data into rows
+    objects.forEach(function(object) {
+      let tr = document.createElement("tr");
+      for (let data of Object.values(object)) {
+      	let td = document.createElement("td");
+        let text = document.createTextNode(data);
+        td.appendChild(text);
+        td.style.textAlign = "right";
+        tr.appendChild(td);
+      }
+      table.append(tr);
+    });
+    
+    return table;
+  }
+  
+  const mountainsTable = createTable(MOUNTAINS);
+  document.querySelector("#mountains").appendChild(mountainsTable);
+    </code></pre>
+
+    <h3>14.2 Elements by tag name</h3>
+    <pre><code>
+
     </code></pre>
 
     <a href="../index.html">Back to home</a>
