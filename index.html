@@ -28,6 +28,10 @@
           {
             label: "Week 03",
             url: "week03/notes.html"
+          },
+          {
+            label: "Week 04",
+            url: "week04/notes.html"
           }
         ]
         
@@ -62,6 +66,10 @@
             label: "Week 03",
             url: "week03/sandbox.html"
           },
+          {
+            label: "Week 04",
+            url: "week04/sandbox.html"
+          }
         ]
         
         var sandboxHtml = document.getElementById("sandbox-links");
@@ -79,6 +87,32 @@
       </script>
     </div>
     
-    
+    <div>
+      <h2>Team Assignments</h2>
+      <ol id="team-assignments-links">
+      </ol>
+      <script>
+        const teamAssignmentLinks = [
+         {
+          label: "Week 02",
+            url: "week02/team/index.html"
+          },
+          {
+            label: "Week 03",
+            url: "week03/team/index.html"
+          }
+        ]
+        var teamAssignmentHtml = document.getElementById("team-assignments-links");
+        teamAssignmentLinks.forEach( function(link) {
+          let a = document.createElement("a");
+          a.href = link.url;
+          a.textContent = link.label;
+
+          let li = document.createElement("li");
+          li.appendChild(a);
+          teamAssignmentHtml.appendChild(li);
+        });
+      </script>
+    </div>
   </body>
 </html>
