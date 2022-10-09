@@ -1,0 +1,31 @@
+#board {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+width: 300px;
+height: 300px;
+margin: 50px;
+}
+
+div{
+    width: 100px;
+    height: 100px;
+}
+.toprow{
+border-bottom: solid 1px black;
+margin: 0px;
+}
+
+.middlerow{
+    border-bottom: solid 1px black;
+    margin: 0px;
+}
+
+.column1 {
+    border-right: solid 1px black;
+    margin: 0px;
+}
+
+.column2 {
+    border-right: solid 1px black;
+    margin: 0px;
+}
