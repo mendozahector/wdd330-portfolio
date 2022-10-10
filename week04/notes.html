@@ -10,6 +10,62 @@
     <h1>Week 04</h1>
     <h2>Notes/Questions</h2>
 
+    <h3>Accessing Forms</h3>
+
+    <p>const form = document.forms[0];</p>
+    <p>const form = document.getElementsByTagname('form')[0];</p>
+    <p>const form = document.forms.search;</p>
+    <p>const form = document.forms['search'];</p>
+
+    <h3>Form Events</h3>
+    <p>const input = form.elements.searchInput; <br>
+
+      input.addEventListener('focus', () => alert('focused'), false);</p>
+    </code></pre>
+
+    <h3>Retrieving and Changing Values From a Form</h3>
+    <p>function search(event) { <br>
+      alert(`You Searched for: ${input.value}`); <br>
+      event.preventDefault();
+  }</p>
+
+  <h3>Listeners</h3>
+  <p>input.addEventListener('focus', function(){ <br>
+    if (input.value==='Search Here') {<br>
+        input.value = '' <br>
+    }<br>
+}, false);<br>
+<br>
+input.addEventListener('blur', function(){<br>
+    if(input.value === '') {<br>
+        input.value = 'Search Here';<br>
+    } }, false);</p>
+
+    <h3>Form Validation</h3>
+    <p>
+      form.addEventListener('submit',validate,false);<br>
+      <br>
+function validate(event) {<br>
+    const firstLetter = form.heroName.value[0];<br>
+    if (firstLetter.toUpperCase() === 'X') {<br>
+        event.preventDefault();<br>
+        alert('Your name is not allowed to start with X!');<br>
+    }<br>
+}
+    </p>
+
+    <h2>Object Oriented Programming (OOP)</h2>
+
+    <p>Object-oriented programming is often used to model representations of objects in the real world. There are three main concepts in OOP: encapsulation, polymorphism and inheritance. I’m going to use my juicer to illustrate how each of these concepts can be applied in a programming environment, since the juicer can be considered an object. It’s a wonderful machine that makes fresh juice for me every morning. In many ways, my juicer can be thought of as an object, as it has properties such as speed and capacity, and also has methods or actions it can perform, such as juicing, switching on and switching off.</p>
+      <h3>Encapsulation</h3>
+      <p>When I use my juicer, I put the fruit into the machine, press the 'on' button and out comes the juice. I haven’t a clue how it does it—only that it makes a very loud noise! This demonstrates the concept of encapsulation: the inner workings are kept hidden inside the object and only the essential functionalities are exposed to the end user, such as the 'on' button. In OOP, this involves keeping all the programming logic inside an object and making methods available to implement the functionality, without the outside world needing to know how it’s done.</p>
+    <h3>Polymorphism</h3>
+    <p>My juicer isn't the only appliance I own that has an 'on' button, although the way the on button works is slightly different for each appliance. My juicer also uses the same electrical outlet as other appliances in my kitchen. I can also place various types of fruit into it and it still juices them. These examples demonstrate the concept of polymorphism: the same process can be used for different objects. In OOP, this means various objects can share the same method, but also have the ability to override shared methods with a more specific implementation.</p>
+    <h3>Inheritance</h3>
+    <p>I’d really like the next model up from my juicer, as it can deal with more types of fruit and it’s a bit quieter. Even though it has these extra features, I’m sure that inside it uses many of the same parts that my juicer has. This demonstrates the concept of inheritance: taking the features of one object then adding some new features. In OOP, this means we can take an object that already exists and inherit all its properties and methods. We can then improve on its functionality by adding new properties and methods.</p>
+      <h3>Classes</h3>
+      <p>Many object-oriented languages, such as Java and Ruby, are known as class-based languages. This is because they use a class to define a blueprint for an object. Objects are then created as an instance of that class, and inherit all the properties and methods of the class. In my juicer example, the juicer class would represent the design of the juicer, and each juicer that’s made on the production line would be instances of that class.</p>
+    <p>JavaScript didn't have classes before ES6, and used the concept of using actual objects as the blueprint for creating more objects. This is known as a prototype-based language. In the juicer example, this might involve building an actual prototype juicer then using this prototype as the basis for making all the other juicers. The juicers based on the prototype would be able to do everything the prototype could do, with some being able to do even more. Even though ES6 now supports classes, it still uses this prototypal inheritance model in the background.</p>
     <a href="../index.html">Back to home</a>
   </body>
 </html>
