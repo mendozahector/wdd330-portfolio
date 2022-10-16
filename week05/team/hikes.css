@@ -1,0 +1,39 @@
+.imgDescContainer {
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+}
+
+img {
+  width: 250px;
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+h2 {
+  background-color: #999;
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  padding: 0;
+}
+
+main {
+  margin: 50px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+}
