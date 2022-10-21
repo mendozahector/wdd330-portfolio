@@ -3,7 +3,7 @@
 body {
     margin: 10px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.0em;
+    font-size: 1.1em;
     background-image: url('/projects/todo/images/watercolor-background.jpg');
 }
 
@@ -11,6 +11,22 @@ body {
     max-width: 100%;
     margin: auto;
     text-align: center;
+}
+
+.add-item {
+    width: 100%;
+    position: fixed;
+    bottom: 10px;
+}
+
+.add-item input {
+    height: 35px;
+    width: 70%;
+}
+
+.add-item button {
+    height: 40px;
+    width: 40px;
 }
 
 /* on screens that are 600px or more */
