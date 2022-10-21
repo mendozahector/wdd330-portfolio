@@ -3,7 +3,7 @@
 body {
     margin: 10px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.2em;
+    font-size: 1.0em;
     background-image: url('/projects/todo/images/watercolor-background.jpg');
 }
 
@@ -17,7 +17,7 @@ body {
 @media only screen and (min-width: 600px) {
 
     body {
-        font-size: 1.4em;
+        font-size: 1.2em;
     }
 
     .body-content {
@@ -30,7 +30,7 @@ body {
 @media only screen and (min-width: 992px) {
 
     body {
-        font-size: 1.5em;
+        font-size: 1.4em;
     }
 
     .body-content {
