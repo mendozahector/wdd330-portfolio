@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+body {
+    margin: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
+    background-image: url('/projects/todo/images/watercolor-background.jpg');
+}
+
+.body-content {
+    max-width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+/* on screens that are 600px or more */
+@media only screen and (min-width: 600px) {
+
+    body {
+        font-size: 1.4em;
+    }
+
+    .body-content {
+        max-width: 90%;
+        margin: auto;
+    }
+}
+
+/* on screens that are 992px or more */
+@media only screen and (min-width: 992px) {
+
+    body {
+        font-size: 1.5em;
+    }
+
+    .body-content {
+        max-width: 80%;
+        margin: auto;
+    }
+}
