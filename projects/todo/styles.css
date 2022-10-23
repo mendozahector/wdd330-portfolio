@@ -25,8 +25,64 @@ body {
 }
 
 .add-item button {
-    height: 40px;
-    width: 40px;
+    padding: 7px;
+}
+
+.todo-items {
+    max-height: 400px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+ol li {
+    text-align: left;
+    list-style: none;
+    user-select: none;
+    background-color: aliceblue;
+    vertical-align: middle;
+    width: 100%;
+    border: 2px solid;
+    border-color: #4CAF50;
+    margin-bottom: 5px;
+
+}
+
+ol button {
+    float: right;
+    margin-right: 0px;
+}
+
+li:not(.completed)::before {
+    content: "	\274E       ";
+}
+
+ol {
+    padding: 0;
+    margin: 0;
+}
+
+
+
+.completed {
+    text-decoration: line-through;
+}
+
+.completed::before {
+    content: "\2705\       ";
+}
+
+.tool-button {
+    height: 50px;
+    padding: 10px;
+    margin: 10px;
+    transition-duration: 0.4s;
+    background-color: #4CAF50;
+    color: white;
+}
+  
+.tool-button:hover {
+    background-color: white;
+    color: black;
 }
 
 /* on screens that are 600px or more */
@@ -37,8 +93,17 @@ body {
     }
 
     .body-content {
-        max-width: 90%;
+        max-width: 80%;
         margin: auto;
+    }
+
+    .add-item input {
+        height: 35px;
+        width: 50%;
+    }
+
+    .todo-items {
+        max-height: 800px;
     }
 }
 
@@ -52,5 +117,14 @@ body {
     .body-content {
         max-width: 80%;
         margin: auto;
+    }
+
+    .add-item input {
+        height: 35px;
+        width: 50%;
+    }
+
+    .todo-items {
+        max-height: 900px;
     }
 }
