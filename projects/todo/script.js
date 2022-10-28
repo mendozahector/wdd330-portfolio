@@ -1,6 +1,6 @@
 
 // [{ id : timestamp, content: string, completed: bool } ]
-let todoItems = [];
+let todoItems = JSON.parse(localStorage.getItem("todoItems")) ? JSON.parse(localStorage.getItem("todoItems")) : [];
 let activeItems = "All";
 
 function show(type) {
@@ -10,10 +10,12 @@ function show(type) {
 
 function deleteTask(i) {
     todoItems.splice(i,1);
+    localStorage.setItem("todoItems", JSON.stringify(todoItems));
 }
 
 function checkTask(i) {
     todoItems[i]["completed"] = !todoItems[i]["completed"];
+    localStorage.setItem("todoItems", JSON.stringify(todoItems));
 }
 
 function updateUI() {
@@ -41,6 +43,7 @@ function updateUI() {
 
     const totalTasks = todoListHtml.childElementCount;
     const toolButtons = {"all-button": "All", "active-button": "Active", "completed-button": "Completed"};
+    const todoTools = document.getElementById("todo-tools");
 
     if (totalTasks >= 1) {
         let message = "";
@@ -52,8 +55,7 @@ function updateUI() {
 
         document.getElementById("total-tasks").innerHTML = message;
         
-        const todoTools = document.getElementById("todo-tools");
-        if (todoTools.childElementCount <= 1) {
+        if (todoTools.childElementCount < 2) {
             for (const [key, value] of Object.entries(toolButtons)) {
                 const button = document.createElement("button");
                 button.id = key;
@@ -67,10 +69,13 @@ function updateUI() {
         }
         
     } else {
+        console.log(todoTools.childElementCount)
         if (activeItems == "All" || todoItems.length < 1) {
-            for (const [key, _] of Object.entries(toolButtons)) {
-                document.getElementById(key).remove();
-              }
+            if (todoTools.childElementCount >= 2) {
+                for (const [key, _] of Object.entries(toolButtons)) {
+                    document.getElementById(key).remove();
+                  }
+            }
             document.getElementById("total-tasks").innerHTML = "Please add a task &#128071 &#128221 &#128526";
         } else {
             const message = activeItems == "Active" ? "No active tasks &#128526" : "No completed tasks! Get to work! &#128170";
@@ -86,6 +91,7 @@ function addItem() {
     if (task && task.length < 50) {
         const todoItem = {"id": Date.now(), "content": task, "completed": false};
         todoItems.push(todoItem);
+        localStorage.setItem("todoItems", JSON.stringify(todoItems));
         updateUI();
     }
 
