@@ -3,13 +3,106 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/vs2015.min.css">
+    <script src="../styles/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
     <link rel="shortcut icon" href="#" />
     <title>Week 05 | Notes</title>
   </head>
   <body>
     <h1>Week 05</h1>
     <h2>Notes/Questions</h2>
+    <h3>Strict Mode</h3>
+    <p>ECMAScript 5 introduced a strict mode that produces more exceptions and warnings and prohibits the use of some deprecated features. This is due to the fact that strict mode considers coding practices that were previously accepted as just being 'poor style' as actual errors.</p>
+    <p>Not using strict mode is often referred to as 'sloppy mode' as it’s forgiving of sloppy programming practices. Strict mode encourages a better quality of JavaScript to be written that befits a ninja programmer, so its use is recommended.</p>
+    <p>Strict mode simply requires the following string to be added to the first line of a JavaScript file:</p>
+    <pre><code>
+      'use strict';
 
+      e = 2.718;
+      << ReferenceError: e is not defined
+    </code></pre>
+    <p>Inside a function:</p>
+    <pre><code>
+      function strictly(){
+        'use strict';
+        // function code goes here
+      }
+    </code></pre>
+
+    <h3>The Trusty Alert</h3>
+    <p>The most basic form of debugging is to use the alert() method to show a dialog at certain points in the code. Because alert() stops a program from running until OK is clicked, it allows us to effectively put breakpoints in the code that let us check the value of variables at that point to see if they’re what we expect them to be</p>
+    <pre><code>
+    function amIOldEnough(age) {
+          if (age = 12) {        
+            alert(age);        
+            return 'No, sorry.';    
+          } else if (age < 18) {       
+              return 'Only if you are accompanied by an adult.';    
+          } else {        
+            return 'Yep, come on in!';    
+          }}
+    </code></pre>
+    <p>The alert method inside the if block will allow us to see the value of the age variable at that point. Once we click on OK, we can then check the function returns the correct message.</p>
+    <p>If you try the example above, you will find that there is a bug in the code:</p>
+    <pre><code>
+      amIOldEnough(21)
+      << 'No, sorry.'
+    </code></pre>
+
+    <h3>Using the Console</h3>
+    <p>Most modern JavaScript environments have a console object that provides a number of methods for logging information and debugging. It's not officially part of the ECMAScript specification, but is well supported in all the major browsers and Node.js.</p>
+    <pre><code>
+    function amIOldEnough(age){
+      console.log(age);
+          if (age < 12) {
+          console.log(`In the if with ${age}`);
+          return 'No, sorry.';
+          } else if (age < 18) {
+          console.log(`In the else-if with ${age}`);
+          return 'Only if you are accompanied by an adult.';
+          } else {
+          console.log(`In the else with ${age}`);
+          return 'Yep, come on in!';
+      }
+    }
+    </code></pre>
+
+    <h3>Throwing Exceptions</h3>
+    <p>So far we’ve seen errors that are thrown automatically by the JavaScript engine when an error occurs. It’s also possible to throw your own exceptions using the throw statement. This will allow for any problems in your code to be highlighted and dealt with, rather than lurk quietly in the background.</p>
+    <pre><code>
+      function squareRoot(number) {
+        'use strict';
+        if (number < 0) {
+          throw new RangeError'('You can't find the square root of negative numbers')
+        }
+        return Math.sqrt(number);
+      };
+    </code></pre>
+    <pre><code>
+      squareRoot(121);
+      << 11
+
+      squareRoot(-1);
+      << RangeError: You can't find the square root of negative numbers
+    </code></pre>
+
+    <h3>try, catch, and finally</h3>
+    <p>If we suspect a piece of code will result in an exception, we can wrap it in a try block. This will run the code inside the block as normal, but if an exception occurs it will pass the error object that is thrown onto a catch block. </p>
+    <p>A finally block can be added after a catch block. This will always be executed after the try or catch block, regardless of whether an exception occurred or not. It is useful if you want some code to run in both cases. </p>
+    <pre><code>
+    function imaginarySquareRoot(number) {
+      'use strict';
+      let answer;
+      try {
+          answer = String(squareRoot(number));
+      } catch(error) {
+          answer = squareRoot(-number)+"i";
+      } finally {
+          return `+ or - ${answer}`;
+      }
+    }
+    </code></pre>
     <a href="../index.html">Back to home</a>
   </body>
 </html>
