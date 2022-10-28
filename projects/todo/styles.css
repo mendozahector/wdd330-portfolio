@@ -4,7 +4,7 @@ body {
     margin: 10px;
     font-family: 'Montserrat', sans-serif;
     font-size: 1.1em;
-    background-image: url('/projects/todo/images/watercolor-background.jpg');
+    background-image: url('./images/watercolor-background.jpg');
 }
 
 .body-content {
