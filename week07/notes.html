@@ -3,6 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/vs2015.min.css">
+    <script src="../styles/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
     <link rel="shortcut icon" href="#" />
     <title>Week 07 | Notes</title>
   </head>
@@ -10,6 +13,47 @@
     <h1>Week 07</h1>
     <h2>Notes/Questions</h2>
 
+    <h3>Parameter Function Count</h3>
+    <pre><code>
+    function square(x) {
+      return x*x;
+    }
+    square.length
+    << 1
+    </code></pre>
+
+    <h3>Call and Apply Methods</h3>
+    <pre><code>
+      function sayHello(){
+        return `Hello, my name is ${ this.name }`;
+      }
+      const clark = { name: 'Clark' };
+      const bruce = { name: 'Bruce' };
+
+      sayHello.call(clark);
+      << 'Hello, my name is Clarke'
+
+      sayHello.call(bruce);
+      << 'Hello, my name is Bruce'
+    </code></pre>
+    <pre><code>
+      function sayHello(greeting='Hello'){
+        return `${ greeting }, my name is ${ this.name }`;
+      }
+      
+      sayHello.call(clark, 'How do you do');
+      << 'How do you do, my name is Clark'
+      
+      sayHello.call(bruce);
+      << 'Hello, my name is Bruce'
+    </code></pre>
+    <p>The apply() method works in the same way, except the arguments of the function are provided as an array, even if there is only one argument:</p>
+    <pre><code>
+      square.apply(null, [4])
+      << 16
+    </code></pre>
+
+    
     <a href="../index.html">Back to home</a>
   </body>
 </html>
