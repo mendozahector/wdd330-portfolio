@@ -13,9 +13,193 @@
     <h1>Week 07</h1>
     <h2>Code Sandbox</h2>
 
-    <h3>Title</h3>
+    <h3>5.1 Flattening</h3>
     <pre><code>
+      let arrays = [[1, 2, 3], [4, 5], [6]];
 
+      console.log(arrays.reduce((flat, current) => flat.concat(current), []));
+      // → [1, 2, 3, 4, 5, 6]
+    </code></pre>
+
+    <h3>5.2 Your own loop</h3>
+    <pre><code>
+      function loop(start, test, update, body) {
+        for (let value = start; test(value); value = update(value)) {
+          body(value);
+        }
+      }
+      
+      loop(3, n => n > 0, n => n - 1, console.log);
+      // → 3
+      // → 2
+      // → 1
+    </code></pre>
+
+    <h3>5.3 Everything</h3>
+    <pre><code>
+      function every(array, predicate) {
+        for (let element of array) {
+          if (!predicate(element)) return false;
+        }
+        return true;
+      }
+      
+      function every2(array, predicate) {
+        return !array.some(element => !predicate(element));
+      }
+      
+      console.log(every([1, 3, 5], n => n < 10));
+      // → true
+      console.log(every([2, 4, 16], n => n < 10));
+      // → false
+      console.log(every([], n => n < 10));
+      // → true
+    </code></pre>
+
+    <h3>5.4 Dominant writing direction</h3>
+    <pre><code>
+      function dominantDirection(text) {
+        let counted = countBy(text, char => {
+          let script = characterScript(char.codePointAt(0));
+          return script ? script.direction : "none";
+        }).filter(({name}) => name != "none");
+      
+        if (counted.length == 0) return "ltr";
+      
+        return counted.reduce((a, b) => a.count > b.count ? a : b).name;
+      }
+      
+      console.log(dominantDirection("Hello!"));
+      // → ltr
+      console.log(dominantDirection("Hey, مساء الخير"));
+      // → rtl
+    </code></pre>
+
+    <h3>18.1 Content negotiation</h3>
+    <pre><code>
+      const url = "https://eloquentjavascript.net/author";
+      const types = ["text/plain",
+                    "text/html",
+                    "application/json",
+                    "application/rainbows+unicorns"];
+
+      async function showTypes() {
+        for (let type of types) {
+          let resp = await fetch(url, {headers: {accept: type}});
+          console.log(`${type}: ${await resp.text()}\n`);
+        }
+      }
+
+      showTypes();
+    </code></pre>
+
+    <h3>18.2 A Javascript workbech</h3>
+    <textarea id="code">return "hi";</textarea>
+    <button id="button">Run</button>
+    <pre id="output"></pre>
+    <pre><code>
+      <script>
+        document.querySelector("#button").addEventListener("click", () => {
+          let code = document.querySelector("#code").value;
+          let outputNode = document.querySelector("#output");
+          try {
+            let result = Function(code)();
+            outputNode.innerText = String(result);
+          } catch (e) {
+            outputNode.innerText = "Error: " + e;
+          }
+        });
+      </script>
+    </code></pre>
+
+    <h3>18.3 Conway's Game of Life</h3>
+    <div id="grid"></div>
+    <button id="next">Next generation</button>
+    <button id="run">Auto run</button>
+    <pre><code>
+      <script>
+        const width = 30, height = 15;
+      
+        // I will represent the grid as an array of booleans.
+      
+        let gridNode = document.querySelector("#grid");
+        // This holds the checkboxes that display the grid in the document.
+        let checkboxes = [];
+        for (let y = 0; y < height; y++) {
+          for (let x = 0; x < width; x++) {
+            let box = document.createElement("input");
+            box.type = "checkbox";
+            gridNode.appendChild(box);
+            checkboxes.push(box);
+          }
+          gridNode.appendChild(document.createElement("br"));
+        }
+      
+        function gridFromCheckboxes() {
+          return checkboxes.map(box => box.checked);
+        }
+        function checkboxesFromGrid(grid) {
+          grid.forEach((value, i) => checkboxes[i].checked = value);
+        }
+        function randomGrid() {
+          let result = [];
+          for (let i = 0; i < width * height; i++) {
+            result.push(Math.random() < 0.3);
+          }
+          return result;
+        }
+      
+        checkboxesFromGrid(randomGrid());
+      
+        // This does a two-dimensional loop over the square around the given
+        // x,y position, counting all fields that have a cell but are not the
+        // center field.
+        function countNeighbors(grid, x, y) {
+          let count = 0;
+          for (let y1 = Math.max(0, y - 1); y1 <= Math.min(height - 1, y + 1); y1++) {
+            for (let x1 = Math.max(0, x - 1); x1 <= Math.min(width - 1, x + 1); x1++) {
+              if ((x1 != x || y1 != y) && grid[x1 + y1 * width]) {
+                count++;
+              }
+            }
+          }
+          return count;
+        }
+      
+        function nextGeneration(grid) {
+          let newGrid = new Array(width * height);
+          for (let y = 0; y < height; y++) {
+            for (let x = 0; x < width; x++) {
+              let neighbors = countNeighbors(grid, x, y);
+              let offset = x + y * width;
+              if (neighbors < 2 || neighbors > 3) {
+                newGrid[offset] = false;
+              } else if (neighbors == 2) {
+                newGrid[offset] = grid[offset];
+              } else {
+                newGrid[offset] = true;
+              }
+            }
+          }
+          return newGrid;
+        }
+      
+        function turn() {
+          checkboxesFromGrid(nextGeneration(gridFromCheckboxes()));
+        }
+      
+        document.querySelector("#next").addEventListener("click", turn);
+      
+        let running = null;
+        document.querySelector("#run").addEventListener("click", () => {
+          if (running) {
+            clearInterval(running);
+            running = null;
+          } else {
+            running = setInterval(turn, 400);
+          }
+        });
+      </script>
     </code></pre>
 
     <a href="../index.html">Back to home</a>
