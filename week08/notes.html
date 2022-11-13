@@ -3,13 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/vs2015.min.css">
+    <script src="../styles/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
     <link rel="shortcut icon" href="#" />
     <title>Week 08 | Notes</title>
   </head>
   <body>
+    <a href="../index.html">Back to home</a>
     <h1>Week 08</h1>
     <h2>Notes/Questions</h2>
 
-    <a href="../index.html">Back to home</a>
+    <h3>Translation</h3>
+    <pre><code>
+      transform: translate(45px, -45px);
+    </code></pre>
+
+    <h3>Scaling</h3>
+    <pre><code>
+      .ad-ad2 h1:hover span {    color: #484848;      transform: translateX(40px) scale(1.5);}
+      transform: scale(1.5, 0.25);
+    </code></pre>
+
+    <h3>Skew</h3>
+    <pre><code>
+      transform: skew(15deg, 4deg);
+    </code></pre>
+    <h3>Keyframes</h3>
+    <pre><code>
+      @keyframes moveRight { 
+        from {
+        transform: translateX(-50%);
+        }
+        to {
+        transform: translateX(50%);
+        }
+    }
+    
+    @keyframes appearDisappear { 
+        0%, 100% {
+        opacity: 0;
+        }
+        20%, 80% {
+        opacity: 1;
+        }
+    }
+    
+    @keyframes bgMove {
+        100% {
+        background-position: 120% 0;
+        }
+    }
+    </code></pre>
+    <h3>Drawing Rectangle on Canvas</h3>
+    <pre><code>
+      var canvas = document.getElementById("myCanvas"); 
+      var context = canvas.getContext("2d"); 
+      context.strokeStyle = "red";
+      context.fillStyle = "rgba(0, 0, 255, 0.5)";
+      context.fillRect(10, 10, 100, 100);   
+      context.strokeRect(10, 10, 100, 100);
+    </code></pre>
   </body>
 </html>
