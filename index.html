@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="#" />
+    <link rel="icon" type="image/x-icon" href="./favicon.png">
     <title>WDD 330 Portfolio</title>
   </head>
   <body>
@@ -152,6 +152,10 @@
           {
             label: "Week 10",
             url: "week10/team/quakes.html"
+          },
+          {
+            label: "Week 11",
+            url: "week11/team/team11.html"
           }
         ]
         var teamAssignmentHtml = document.getElementById("team-assignments-links");
@@ -176,8 +180,12 @@
         const projectsLinks = [
          {
           label: "Todo JS",
-            url: "projects/todo/index.html"
-          }
+            url: "./projects/todo/index.html"
+          },
+          {
+          label: "Stock News Screener",
+            url: "./projects/stock-screener/index.html"
+          },
         ]
         var projectstHtml = document.getElementById("projects-links");
         projectsLinks.forEach( function(link) {
