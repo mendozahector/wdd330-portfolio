@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
+.resolution {
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -17,8 +23,9 @@ h1 {
 }
 
 .body-content {
-    width: 80%;
+    width: 85%;
     margin: auto;
+    display: none;
 }
 
 ul {
@@ -36,6 +43,15 @@ ul {
 .latest-news {
     text-align: center;
     margin-top: 20px;
+}
+
+#last-news {
+    text-align: center;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    width: 80%;
+    padding: 10px;
+    display: none;
 }
 
 ul {
@@ -122,8 +138,22 @@ ul li:last-child {
     background-color: transparent;
 }
 
+.chart {
+    text-align: center;
+}
+
+#myChart {
+    margin: auto;
+}
+
 /* on screens that are 600px or more */
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 700px) {
+    .body-content {
+        display: block;
+    }
+    .resolution {
+        display: none;
+    }
 }
 
 /* on screens that are 992px or more */

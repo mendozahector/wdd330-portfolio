@@ -6,10 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
     <link rel="icon" type="image/x-icon" href="./favicon.png">
-    <script src="./script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js" defer></script>
+    <script src="./main.js" defer></script>
     <title>Stock News Screener</title>
 </head>
 <body>
+    <div class="resolution">
+        <h2>Screen resolution must be at least 700px</h2>
+    </div>
     <div class="body-content">
         <a href="../../index.html">Back to home</a>
         <h1>Stock Market News Screener</h1>
@@ -17,27 +21,32 @@
             <div id="price-up">
                 <h2>30M Price Up</h2>
                 <ul id="price-up-list">
-                    <li>Hello there</li>
-                    <li class="dark">Another one</li>
                 </ul>
             </div>
 
             <div id="statuses">
-                <h2>Statuses</h2>
+                <h2>10M Statuses</h2>
                 <ul id="statuses-list">
-                    <li>Hello there</li>
-                    <li class="dark">Second status</li>
                 </ul>
             </div>
 
             <div id="price-down">
                 <h2>30M Price Down</h2>
                 <ul id="price-down-list">
-                    <li>Hello there</li>
-                    <li class="dark">Third status</li>
                 </ul>
             </div>
         </div>
+
+        <div id="last-news">
+        </div>
+
+        <div class="chart">
+            <h2 id="chart-name">SPY</h2>
+            <button onclick="updateChartName('SPY')">SPY</button>
+            <button onclick="updateChartName('QQQ')">QQQ</button>
+            <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+        </div>
+
         <div class="latest-news">
             <h2>Latest Stock Market News</h2>
             <ul id="news-list">
