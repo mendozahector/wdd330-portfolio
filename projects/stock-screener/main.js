@@ -81,100 +81,108 @@ function updateUI() {
     if (Object.keys(latest_stock_news).length > 0) {
 
         const up = document.getElementById("price-up-list");
-        const statuses_list = document.getElementById("statuses-list");
         const down = document.getElementById("price-down-list");
 
         byPercentChange = [];
-        byPercentChange = [ Object.assign({}, latest_stock_news) ];
+        byPercentChange = [ structuredClone(latest_stock_news) ];
     
-        byPercentChange.sort((a, b) => parseFloat(b.p_c) - parseFloat(a.p_c));
+        byPercentChange.sort((a, b) => parseFloat(a.p_c) - parseFloat(b.p_c));
     
         // Update Price Up List
         let dark = false;
         up.innerHTML = '';
-        byPercentChange.forEach(element => {
-            for (var s in element) break;
+        Object.keys(byPercentChange[0]).forEach(key => {
 
-            const p_c = element[s].p_c;
+            const p_c = latest_stock_news[key].p_c;
 
-            const date_string = element[s].news.datePublished.split(" ")[1] + " - ";
-            const li = document.createElement("li");
-            li.appendChild(document.createTextNode(date_string));
-
-            const a = document.createElement('a');
-            a.appendChild(document.createTextNode(s));
-            a.href = `javascript:updateChartName('${s}')`;
-
-            li.appendChild(a);
-            li.appendChild(document.createTextNode(`: ${p_c}%`));
-
-            if (dark) {
-                li.classList.add('dark');
-                dark = false;
-            } else {
-                dark = true;
+            if (p_c > 5) {
+                const date_string = latest_stock_news[key].news.datePublished.split(" ")[1] + " - ";
+                const li = document.createElement("li");
+                li.appendChild(document.createTextNode(date_string));
+    
+                const a = document.createElement('a');
+                a.appendChild(document.createTextNode(key));
+                a.href = `javascript:updateChartName('${key}')`;
+    
+                li.appendChild(a);
+                li.appendChild(document.createTextNode(`: ${p_c}%`));
+    
+                if (dark) {
+                    li.classList.add('dark');
+                    dark = false;
+                } else {
+                    dark = true;
+                }
+    
+                up.appendChild(li);
             }
 
-            up.appendChild(li);
         });
 
-        console.log(byPercentChange, latest_stock_news);
+        console.log(byPercentChange[0], latest_stock_news);
 
         // Update Price Down List
         dark = false;
         down.innerHTML = '';
-        byPercentChange.reverse().forEach(element => {
-            for (var s in element) break;
+        Object.keys(byPercentChange[0]).reverse().forEach(key => {
 
-            const p_c = element[s].p_c;
+            const p_c = latest_stock_news[key].p_c;
 
-            const date_string = element[s].news.datePublished.split(" ")[1] + " - ";
-            const li = document.createElement("li");
-            li.appendChild(document.createTextNode(date_string));
-
-            const a = document.createElement('a');
-            a.appendChild(document.createTextNode(s));
-            a.href = `javascript:updateChartName('${s}')`;
-
-            li.appendChild(a);
-            li.appendChild(document.createTextNode(`: ${p_c}%`));
-
-            if (dark) {
-                li.classList.add('dark');
-                dark = false;
-            } else {
-                dark = true;
+            if (p_c < -7) {
+                const date_string = latest_stock_news[key].news.datePublished.split(" ")[1] + " - ";
+                const li = document.createElement("li");
+                li.appendChild(document.createTextNode(date_string));
+    
+                const a = document.createElement('a');
+                a.appendChild(document.createTextNode(key));
+                a.href = `javascript:updateChartName('${key}')`;
+    
+                li.appendChild(a);
+                li.appendChild(document.createTextNode(`: ${p_c}%`));
+    
+                if (dark) {
+                    li.classList.add('dark');
+                    dark = false;
+                } else {
+                    dark = true;
+                }
+    
+                down.appendChild(li);
             }
 
-            down.appendChild(li);
-        });
-
-        // Update Statuses List
-        dark = false;
-        statuses_list.innerHTML = '';
-        statuses.forEach(element => {
-
-            const date_string = element.Timestamp.toLocaleTimeString('it-IT');
-            const li = document.createElement("li");
-            li.appendChild(document.createTextNode(date_string));
-
-            const a = document.createElement('a');
-            a.appendChild(document.createTextNode(element.Symbol));
-            a.href = `javascript:updateChartName('${element.Symbol}')`;
-
-            li.appendChild(a);
-            li.appendChild(document.createTextNode(`: ${element.StatusMessage} ${element.ReasonMessage}`));
-
-            if (dark) {
-                li.classList.add('dark');
-                dark = false;
-            } else {
-                dark = true;
-            }
-
-            statuses_list.prepend(li);
         });
     }
+
+
+    // Update Statuses List
+    const statuses_list = document.getElementById("statuses-list");
+    statuses_list.innerHTML = '';
+    dark = false;
+    statuses.forEach(element => {
+
+        let date_string = new Date(element.Timestamp);
+        date_string.setMinutes(date_string.getMinutes() - 10);
+        const li = document.createElement("li");
+        li.appendChild(document.createTextNode(`${date_string.toLocaleTimeString('it-IT')} - `));
+
+        const a = document.createElement('a');
+        a.appendChild(document.createTextNode(element.Symbol));
+        a.href = `javascript:updateChartName('${element.Symbol}')`;
+
+        li.appendChild(a);
+        li.appendChild(document.createTextNode(`: ${element.StatusMessage} ${element.ReasonMessage}`));
+
+        if (dark) {
+            li.classList.add('dark');
+            dark = false;
+        } else {
+            dark = true;
+        }
+
+        statuses_list.prepend(li);
+    });
+
+
     
     setTimeout(updateUI, 5000);
 }
@@ -197,6 +205,7 @@ async function onNews(event) {
             latest_stock_news[symbol] = {};
             latest_stock_news[symbol]['p_c'] = stocks[symbol];
             latest_stock_news[symbol]['news'] = article;
+            console.log(symbol, article);
         }
     });
 
@@ -226,6 +235,7 @@ async function onStocks(event) {
     data = event.data;
 
     if (data['SPY'] === undefined) {
+        statuses.length = 0;
         statuses = data;
     } else if (data['SPY']['trades'] === undefined) {
         stocks = data;

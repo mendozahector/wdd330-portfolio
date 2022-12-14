@@ -54,7 +54,7 @@ function run_news_websocket() {
     let socket = new WebSocket("wss://cast.streetinsider.com:10443/cast");
 
     socket.onopen = function(e) {
-        socket.send(JSON.stringify({"_req":"auth","token":"JexJqm/+M2LcU7o1","_id":"0.08681969465676631"}));
+        socket.send(JSON.stringify({"_req":"auth","token":"zawDMggfIhcRNGUs","_id":"0.8964635682406461"}));
     };
       
     socket.onmessage = function(event) {
@@ -86,7 +86,7 @@ function run_news_websocket() {
             // event.code is usually 1006 in this case
             console.log('[close] Connection died');
         }
-        run_news_websocket();
+        setTimeout(run_news_websocket(), 15000);
     };
     
     socket.onerror = function(error) {
