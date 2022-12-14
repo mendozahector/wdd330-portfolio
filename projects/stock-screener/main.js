@@ -119,8 +119,6 @@ function updateUI() {
 
         });
 
-        console.log(byPercentChange[0], latest_stock_news);
-
         // Update Price Down List
         dark = false;
         down.innerHTML = '';
@@ -205,7 +203,6 @@ async function onNews(event) {
             latest_stock_news[symbol] = {};
             latest_stock_news[symbol]['p_c'] = stocks[symbol];
             latest_stock_news[symbol]['news'] = article;
-            console.log(symbol, article);
         }
     });
 
